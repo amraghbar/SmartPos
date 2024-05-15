@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<aside class="col-2   " id="sidebar" style="height: 100vh">
+    <div id="auppers" class="col-12 b d-flex justify-content-center align-items-center flex-row gap-3 p-2" style="height: 9vh">
+        <img src="css/img/logo.png" alt="" height="50px">
+        <p class="m-0">Smart<span>POS</span></p>
+    </div>
+    <div id="centerSe" class="col-12">
+        <ul class="d-flex flex-column pt-4 mb-0"></ul>
+        <p class="other col-12 px-2 m-0">others </p>
+        <ul class="d-flex flex-column pt-4 mb-0"></ul>
+    </div>
+    <div class="col-10 userinfo gap-1 d-flex flex-wrap justify-content-center align-items-center">
+        <img src="css/img/user1.png" alt="">
+        <p class="col-12 text-center mb-0" style="font-weight: 600;">Amr Aghbar</p>
+        <p class="col-12 text-center mb-0 userdata">User info</p>
+        <button id="logoutButton" class="col-12 btn"> Log out </button>
+
+    </div>
+</aside>
+<main class="d-flex flex-grow-1 col-10 " style="height: 60vh">
+    <iframe class="col-12 " src="pages/Food.html"></iframe>
+   
+</main>
+
+<i class="fa-solid fa-bars icon p-3" id="menui" style="font-size: 27px; float: right;"></i>
+
+<script src="js/home.js"></script>
+<script src="js/render.js"></script>
+
+</body>
+</html>

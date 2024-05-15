@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/food.css">
+</head>
+
+<body>
+    <div class="col-12 col-md-10 col-la-8 p-4" style="width: 100%;">
+        <nav class="col-12 d-flex align-items-center justify-content-between">
+            <h2 id="catprod">Categories</h2>
+            <button id="cartButton" class="btn btn-primary">عرض السلة</button>
+        </nav>
+
+        <div id="SideCart">
+            <span class="closebtn" onclick="closeCart()">&times;</span>
+
+            <div class="cart-content">
+                <h2>Shopping cart</h2>
+                <div id="cartItems">
+                </div>
+                <div id="cartTotal">
+                </div>
+            </div>
+        </div>
+
+        <div id="catsa" class="d-flex align-items-center gap-3 mb-1 flex-wrap justify-content-center col-12 col-md-10 col-la-8 mx-auto">
+        </div>
+        <div id="products" class="d-flex align-items-center gap-3 mb-1 flex-wrap justify-content-center col-md-10 col-la-8" style="width: 99%;"></div>
+    </div>
+    <div class="container col-12 d-flex">
+        <div id="Products" class="products"></div>
+    </div>
+
+    <script src="../js/food.js"></script>
+    <script src="../js/render.js"></script>
+</body>
+
+</html>
+

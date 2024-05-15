@@ -1,0 +1,123 @@
+{
+    "Cold Drinks":[
+{
+    "id":1,
+    "name":"cola",
+    "price":"10",
+    "img":""
+},
+{
+    "id":2,
+    "name":"Orange Juice",
+    "price":"10",
+    "img":""
+},
+{
+    "id":3,
+    "name":"Strbery",
+    "price":"10",
+    "img":""
+}
+    ],
+    "Burgers":[
+        {
+            "id":1,
+            "name":"cola",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":2,
+            "name":"Orange Juice",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":3,
+            "name":"Strbery",
+            "price":"10",
+            "img":""
+        }
+    ],
+    "Pizza":[
+        {
+            "id":1,
+            "name":"cola",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":2,
+            "name":"Orange Juice",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":3,
+            "name":"Strbery",
+            "price":"10",
+            "img":""
+        }
+    ],
+    "Wok":[
+        {
+            "id":1,
+            "name":"cola",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":2,
+            "name":"Orange Juice",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":3,
+            "name":"Strbery",
+            "price":"10",
+            "img":""
+        }
+    ],
+    "Dessert":[
+        {
+            "id":1,
+            "name":"cola",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":2,
+            "name":"Orange Juice",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":3,
+            "name":"Strbery",
+            "price":"10",
+            "img":""
+        }
+    ],
+    "Pasta":[
+        {
+            "id":1,
+            "name":"cola",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":2,
+            "name":"Orange Juice",
+            "price":"10",
+            "img":""
+        },
+        {
+            "id":3,
+            "name":"Strbery",
+            "price":"10",
+            "img":""
+        }
+    ]
+
+}
