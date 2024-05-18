@@ -264,5 +264,29 @@ function addToCart(catIndex, productIndex) {
     renderSideCart();
   }
 
+  
   document.getElementById("cartButton").addEventListener("click", openCart);
   window.onload = closeCart;
+
+  function updateCartCount() {
+    const cartCountElement = document.getElementById('cartCount');
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const itemCount = cartItems.length;
+
+    if (itemCount > 0) {
+        cartCountElement.textContent = itemCount;
+        cartCountElement.classList.add('show');
+    } else {
+        cartCountElement.classList.remove('show');
+    }
+}
+
+updateCartCount();
+
+// Example of updating the cart (you would replace this with your actual cart update logic)
+document.getElementById('cartButton').addEventListener('click', function() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems.push({ id: 1, name: 'Product', quantity: 1 });
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+});

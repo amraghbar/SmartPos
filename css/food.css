@@ -107,6 +107,26 @@ img{
   .cart-content {
     padding: 20px;
   }
+  #cartButton {
+    position: relative;
+}
+
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    display: none;
+}
+
+#cartCount.show {
+    display: inline-block;
+}
+
   @media screen and (max-width:767px) {
     #CartTotal {
         width: 24%;
