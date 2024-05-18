@@ -188,105 +188,101 @@ function showProductsInCat(catIndex) {
   document.querySelector(".AllCats").remove();
 }
 
+
 function addToCart(catIndex, productIndex) {
   let product = dataObj[catIndex].products[productIndex];
-  product.qty = 1;
-  sideCartProducts.push(product);
+  let existingProduct = sideCartProducts.find(p => p.id === product.id);
+  
+  if (existingProduct) {
+    existingProduct.qty++;
+  } else {
+    product.qty = 1;
+    sideCartProducts.push(product);
+  }
+
+  renderSideCart();
+  updateCartCount();
+}
+
+function renderSideCart() {
+  let cartItemsDiv = document.querySelector("#cartItems");
+  cartItemsDiv.innerHTML = "";
+  sideCartProducts.forEach((el, index) => {
+    cartItemsDiv.innerHTML += `
+      <div class="productInCart" id="PInC">
+        <div class="col-12 d-flex justify-content-flex-start gap-2">
+          <img src="${el.imgSrc}" style="height: 3rem" />
+          <p class="mb-0">${el.name}</p>
+        </div>
+        <div class="col-12 d-flex align-items-center gap-2 justify-content-center">
+          <button class="btn btn-outline-warning text-dark clik" onclick="decrementQty(${index})">-</button>
+          <p class="mb-0">${el.qty}</p>
+          <button class="btn btn-outline-warning text-dark clik" onclick="incrementQty(${index})">+</button>
+        </div>
+        <div class="col-12 d-flex justify-content-between p-2">
+          <p>السعر: ${el.price}</p>
+          <p>الإجمالي: ${el.price * el.qty}</p>
+          <i class="fa-solid fa-trash-can clik" onclick="deleteItem(${index})"></i>
+        </div>
+      </div>
+    `;
+  });
+
+  getTotal();
+  updateCartCount();
+}
+
+function getTotal() {
+  let total = 0;
+  sideCartProducts.forEach(el => {
+    total += el.price * el.qty;
+  });
+  document.querySelector("#cartTotal").innerHTML = `<p>Final Price : ${total}</p>`;
+}
+
+function openCart() {
+  renderSideCart();
+  document.getElementById("SideCart").style.width = "425px"; 
+}
+
+function closeCart() {
+  renderSideCart();
+  document.getElementById("SideCart").style.width = "0";
+}
+
+function incrementQty(index) {
+  sideCartProducts[index].qty++;
   renderSideCart();
 }
 
-
-
-
-
-  function renderSideCart() {
-    let cartItemsDiv = document.querySelector("#cartItems");
-    cartItemsDiv.innerHTML = "";
-    sideCartProducts.forEach((el, index) => {
-      cartItemsDiv.innerHTML += `
-        <div class="productInCart" id="PInC">
-          <div class="col-12 d-flex justify-content-flex-start gap-2">
-            <img src="${el.imgSrc}" style="height: 3rem" />
-            <p class="mb-0">${el.name}</p>
-          </div>
-          <div class="col-12 d-flex align-items-center gap-2 justify-content-center">
-            <button class="btn btn-outline-warning text-dark clik" onclick="decrementQty(${index})">-</button>
-            <p class="mb-0">${el.qty}</p>
-            <button class="btn btn-outline-warning text-dark clik" onclick="incrementQty(${index})">+</button>
-          </div>
-          <div class="col-12 d-flex justify-content-between p-2">
-            <p>السعر: ${el.price}</p>
-            <p>الإجمالي: ${el.price * el.qty}</p>
-            <i class="fa-solid fa-trash-can clik" onclick="deleteItem(${index})"></i>
-          </div>
-        </div>
-      `;
-    });
-
-    getTotal();
+function decrementQty(index) {
+  if (sideCartProducts[index].qty > 1) {
+    sideCartProducts[index].qty--;
+  } else {
+    deleteItem(index);
   }
-
-  function getTotal() {
-    let total = 0;
-    sideCartProducts.forEach(el => {
-      total += el.price * el.qty;
-    });
-    document.querySelector("#cartTotal").innerHTML = `<p>Final Price : ${total}</p>`;
-  }
-
-  function openCart() {
-    renderSideCart();
-    document.getElementById("SideCart").style.width = "425px"; 
-  }
-
-  function closeCart() {
-    renderSideCart();
-
-    document.getElementById("SideCart").style.width = "0";
-  }
-
-  function incrementQty(index) {
-    sideCartProducts[index].qty++;
-    renderSideCart();
-  }
-
-  function decrementQty(index) {
-    if (sideCartProducts[index].qty > 1) {
-      sideCartProducts[index].qty--;
-    } else {
-      deleteItem(index);
-    }
-    renderSideCart();
-  }
-
-  function deleteItem(index) {
-    sideCartProducts.splice(index, 1);
-    renderSideCart();
-  }
-
-  
-  document.getElementById("cartButton").addEventListener("click", openCart);
-  window.onload = closeCart;
-
-  function updateCartCount() {
-    const cartCountElement = document.getElementById('cartCount');
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const itemCount = cartItems.length;
-
-    if (itemCount > 0) {
-        cartCountElement.textContent = itemCount;
-        cartCountElement.classList.add('show');
-    } else {
-        cartCountElement.classList.remove('show');
-    }
+  renderSideCart();
 }
 
-updateCartCount();
+function deleteItem(index) {
+  sideCartProducts.splice(index, 1);
+  renderSideCart();
+}
 
-// Example of updating the cart (you would replace this with your actual cart update logic)
-document.getElementById('cartButton').addEventListener('click', function() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    cartItems.push({ id: 1, name: 'Product', quantity: 1 });
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    updateCartCount();
-});
+document.getElementById("cartButton").addEventListener("click", openCart);
+window.onload = closeCart;
+
+function updateCartCount() {
+  const cartCountElement = document.getElementById('cartCount');
+  const itemCount = sideCartProducts.reduce((sum, item) => sum + item.qty, 0);
+
+  if (itemCount > 0) {
+    cartCountElement.textContent = itemCount;
+    cartCountElement.classList.add('show');
+  } else {
+    cartCountElement.classList.remove('show');
+  }
+}
+
+// Initialize cart count on page load
+updateCartCount();
